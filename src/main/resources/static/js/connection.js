@@ -56,7 +56,6 @@ function voltear()
 	var correrC1 = posPiece.left;
 	var correrC2 = posBlankBiece.left + correrC1;
 	c1.animate({right : "-="+correrC1 },1000, function(){alert("JAJA")});
-
 	c2.animate({right : "+="+correrC2 },1000, function(){alert("C2")});
 }
 
@@ -232,7 +231,11 @@ function updateUserBoard( player )
 		{
 			if( i == blankPos.row && j == blankPos.column )
 			{
-				$( $("#BoardPlayer"+player.id+" .piece")[position]).text( "B" );
+				//$( $("#BoardPlayer"+player.id+" .piece")[position]).text( "B" );
+				$("#BoardPlayer"+player.id+" .blanck").css( {  backgroundColor : "" });
+		    	$("#BoardPlayer"+player.id+" .blanck").removeClass( "blanck" );
+				$( $("#BoardPlayer"+player.id+" .piece")[position]).addClass( "blanck" );
+				$( $("#BoardPlayer"+player.id+" .piece")[position]).css( {  backgroundColor : "black" }  );
 			}
 			else
 			{

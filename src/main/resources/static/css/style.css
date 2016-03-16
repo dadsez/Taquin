@@ -5,6 +5,8 @@
 	bottom: 150px;
 }
 
+
+
 .competition
 {
 	max-width: 100%;
@@ -70,4 +72,7 @@ th {
     background-color: #4CAF50;
     color: white;
     height: 50px;
+}
+.blanck{
+	background-color: black;
 }
