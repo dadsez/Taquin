@@ -85,7 +85,7 @@ function connect()
 								updateGame( game );
 						});
 			});
-	//getForObject(null, "/api/game/new/", function(data) {});
+	//postForObject(null, "/api/game/new/", function(data) {});
 	
 }
 
@@ -239,8 +239,12 @@ function updateUserBoard( player )
 			}
 			else
 			{
-				$( $("#BoardPlayer"+player.id+" .piece")[position]).text( player.board.currentState[i][j] );
+				$( $("#BoardPlayer"+player.id+" .piece")[position]).text( position );
 			}
+			$( $("#BoardPlayer"+player.id+" .piece")[position]).css({position: ""});
+			$( $("#BoardPlayer"+player.id+" .piece")[position]).css({top: ""});
+
+			$( $("#BoardPlayer"+player.id+" .piece")[position]).css({right: ""});
 			position++;
 		}
 	}
@@ -281,82 +285,25 @@ function moveRightAndLeft( player, blankPiece, piece )
 {
 	blankPiece.css({position: "relative"});
 	piece.css({position: "relative"});
-	
-	var posBlankBiece = blankPiece.position();
-	var posPiece = piece.position();
-	console.log( posBlankBiece );
-	console.log( posPiece );
-	var correrC1 = posPiece.left;
-	var correrC2 = posBlankBiece.left + correrC1;
-	
-	console.log("correrC1: " + correrC1 + "correrC2: " + correrC2 );
-	
-	blankPiece.animate({right : "-="+correrC1 },1000, function(){  });
 
-	piece.animate({right : "+="+correrC2 },1000, function(){updateUserBoard(  player ); console.log("ACTUA");} );
-
-}
-/*
-//-------------------------------------------------------------------------------------------------------------------------------------
-function moveToLeft( player, blankPiece, piece )
-{
-	blankPiece.css({position: "relative"});
-	piece.css({position: "relative"});
-	
-	var posBlankBiece = blankPiece.position();
-	var posPiece = piece.position();
-	console.log( posBlankBiece );
-	console.log( posPiece );
-	var correrC1 = posPiece.left + posBlankBiece.left;
-	var correrC2 = posBlankBiece.left;
-	
-	console.log("correrC1: " + correrC1 + "correrC2: " + correrC2 );
-	
-	blankPiece.animate({right : "+="+correrC1 },1000, function(){ });
-
-	piece.animate({right : "-="+correrC2 },1000, function(){ updateUserBoard(  player ); console.log("ACTUA");});
+	var animationSize = blankPiece.width();
+	var animationSize = blankPiece.width();
+		
+	blankPiece.animate( { right : "-="+animationSize }, 100, function(){  });
+	piece.animate( { right : "+="+animationSize }, 100, function(){ updateUserBoard(  player ); } );
 
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------
-function moveToDown( player, blankPiece, piece )
-{
-	blankPiece.css({position: "relative"});
-	piece.css({position: "relative"});
-	
-	var posBlankBiece = blankPiece.position();
-	var posPiece = piece.position();
-	console.log( posBlankBiece );
-	console.log( posPiece );
-	var correrC1 = posPiece.top;
-	var correrC2 = posBlankBiece.top + correrC1;
-	
-	console.log("correrC1: " + correrC1 + "correrC2: " + correrC2 );
-	
-	blankPiece.animate({top : "-="+correrC1 },1000, function(){ });
-
-	piece.animate({top : "+="+correrC2 },1000, function(){ updateUserBoard(  player ); console.log("ACTUA");});
-
-}
-*/
 //-------------------------------------------------------------------------------------------------------------------------------------
 function moveUpAndDown( player, blankPiece, piece )
 {
 	blankPiece.css({position: "relative"});
 	piece.css({position: "relative"});
-	
-	var posBlankBiece = blankPiece.position();
-	var posPiece = piece.position();
-	console.log( posBlankBiece );
-	console.log( posPiece );
-	var correrC1 = posPiece.top + posBlankBiece.top;
-	var correrC2 = posBlankBiece.top;
-	
-	console.log("correrC1: " + correrC1 + "correrC2: " + correrC2 );
-	
-	blankPiece.animate({top : "+="+correrC1 },1000, function(){ });
 
-	piece.animate({top : "-="+correrC2 },1000, function(){ updateUserBoard(  player ); console.log("ACTUA");});
+	var animationSize = blankPiece.height()
+
+	blankPiece.animate( { top : "+="+animationSize }, 100, function(){ });
+	piece.animate( { top : "-="+animationSize }, 100, function(){ updateUserBoard(  player );});
 
 }
 

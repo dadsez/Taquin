@@ -38,7 +38,7 @@ def create_player( pId  , name ):
 
 def main():
     matrix = [ [ 1 , 5 ] , [ 2 , 4 ] ]
-    challenge( matrix , 1 , 1 )
+    challenge( matrix , 1 , 1 , 2 )
 
 if __name__ == '__main__':
     main()

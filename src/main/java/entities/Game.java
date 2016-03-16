@@ -32,9 +32,25 @@ public class Game
 		newSuscriber = false;
 		rebuildBoard= false;
 		moveBoard = false;
-		
+		newPlayer = false;	
 	}
 
+	public Game( Game other )
+	{
+		players = other.players;
+		numPlayers = other.numPlayers;
+		idPlayerToUpd = other.idPlayerToUpd;
+		piece_1_ToMove = other.piece_1_ToMove;
+		piece_2_ToMove = other.piece_2_ToMove;
+		typeMovement = other.typeMovement;
+		newBoard = other.newBoard;
+		newSuscriber = other.newSuscriber;
+		rebuildBoard= other.rebuildBoard;
+		moveBoard = other.moveBoard;
+		newPlayer = other.newPlayer;	
+	}
+	
+	
 /**--------------------------------------------------------------Getter&Setter----------------------------------------------------------*/		
 	/**
 	 * @return the jugadores
@@ -212,6 +228,15 @@ public class Game
 		this.piece_2_ToMove = piece_2_ToMove;
 	}
 
+	@Override
+	public String toString() {
+		return "Game [players=" + players + ", numPlayers=" + numPlayers + ", idPlayerToUpd=" + idPlayerToUpd
+				+ ", typeMovement=" + typeMovement + ", piece_1_ToMove=" + piece_1_ToMove + ", piece_2_ToMove="
+				+ piece_2_ToMove + ", newBoard=" + newBoard + ", newPlayer=" + newPlayer + ", newSuscriber="
+				+ newSuscriber + ", moveBoard=" + moveBoard + ", rebuildBoard=" + rebuildBoard + "]";
+	}
+	
+	
 /**--------------------------------------------------------------Creacion-----------------------------------------------------------------*/
 	
 	//-------------------------------------------------------------------------------------------------------------------------------------
@@ -391,7 +416,7 @@ public class Game
 		int size = player.getBoard().getCurrentState().length;
 		this.piece_1_ToMove = ( size * blankActualPos.getRow() ) + blankActualPos.getColumn();
 		this.piece_2_ToMove = ( size * blankNewPos.getRow() ) + blankNewPos.getColumn();
-		System.out.println("P1: " + piece_1_ToMove + " P2: " + piece_2_ToMove );
+
 		if( blankNewPos.getRow() < 0 || blankNewPos.getRow() >= size || blankNewPos.getColumn() < 0 || blankNewPos.getColumn() >= size )
 			return null;
 		
